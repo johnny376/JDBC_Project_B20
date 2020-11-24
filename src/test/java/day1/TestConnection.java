@@ -18,5 +18,20 @@ public class TestConnection {
         rs.next(); // currently we are at the very first row
 
         System.out.println("first column value using index: --> " + rs.getString(1));
+
+        System.out.println("first column value using index: --> " + rs.getString(2));
+
+        System.out.println("Region_ID at this row is : " +rs.getString("REGION_ID"));
+
+        System.out.println("Region_Name at this row is : " +rs.getString("REGION_NAME"));
+
+        rs.next();
+
+        System.out.println("Region_ID at this row is : " +rs.getString("REGION_ID"));
+
+        System.out.println("Region_Name at this row is : " +rs.getString("REGION_NAME"));
+
+
+
     }
 }
