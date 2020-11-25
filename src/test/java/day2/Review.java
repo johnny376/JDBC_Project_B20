@@ -51,7 +51,10 @@ public class Review {
             System.out.println("MIN SALARY COLUMN AS NUMBER: $" + rs.getDouble("MIN_SALARY"));
         }
 
-
+        //clean up the connection, statement and resultant object after usage:
+        rs.close();
+        stmt.close();
+        conn.close();
 
 
 
