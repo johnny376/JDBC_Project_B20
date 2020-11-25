@@ -22,11 +22,11 @@ public class DisplayAllDataFromAllColumn {
         ResultSetMetaData rsmd = rs.getMetaData();
         int columnCount = rsmd.getColumnCount();
 
-        for (int colNum = 1; colNum < columnCount; colNum++) {
-            System.out.print(rsmd.getColumnLabel(colNum) + "\t");
-        }
-
-        System.out.println();
+//        for (int colNum = 1; colNum < columnCount; colNum++) {
+//            System.out.print(rsmd.getColumnLabel(colNum) + "\t");
+//        }
+//
+//        System.out.println();
         rs.next();
 
         for (int colNum = 1; colNum < columnCount; colNum++) {
@@ -43,9 +43,9 @@ public class DisplayAllDataFromAllColumn {
         }
 
         //clean up the connection, statement and resultant object after usage:
-        rs.close();
-        stmt.close();
-        conn.close();
+//        rs.close();
+//        stmt.close();
+//        conn.close();
 
 
 
