@@ -19,6 +19,15 @@ public class GettingMoreInfoAboutResultObject {
 
         ResultSet rs   =   stmt.executeQuery("SELECT * FROM JOBS") ;
 
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int colCount = rsmd.getColumnCount();
+        System.out.println("colCount = " + colCount);
+
+        System.out.println("First column name is: "+ rsmd.getColumnLabel(1));
+        System.out.println("Second column name is: "+ rsmd.getColumnLabel(2));
+
+
+
 
 
 
