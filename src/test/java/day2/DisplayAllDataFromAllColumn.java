@@ -19,8 +19,33 @@ public class DisplayAllDataFromAllColumn {
 
         ResultSet rs   =   stmt.executeQuery("SELECT * FROM EMPLOYEES") ;
 
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int columnCount = rsmd.getColumnCount();
 
+        for (int colNum = 1; colNum < columnCount; colNum++) {
+            System.out.print(rsmd.getColumnLabel(colNum) + "\t");
+        }
 
+        System.out.println();
+        rs.next();
+
+        for (int colNum = 1; colNum < columnCount; colNum++) {
+            System.out.print(rs.getString(colNum) + "\t");;
+        }
+
+        rs.beforeFirst();
+
+        while(rs.next()){
+            for (int colNum = 1; colNum < columnCount; colNum++) {
+                System.out.print(rs.getString(colNum) + "\t");;
+            }
+            System.out.println();
+        }
+
+        //clean up the connection, statement and resultant object after usage:
+        rs.close();
+        stmt.close();
+        conn.close();
 
 
 
