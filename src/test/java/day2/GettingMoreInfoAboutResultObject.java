@@ -1,5 +1,7 @@
 package day2;
 
+import utility.DB_Utility;
+
 import java.sql.*;
 
 public class GettingMoreInfoAboutResultObject {
@@ -31,9 +33,7 @@ public class GettingMoreInfoAboutResultObject {
         }
 
         //clean up the connection, statement and resultant object after usage:
-        rs.close();
-        stmt.close();
-        conn.close();
+        DB_Utility.destroy();
 
 
 

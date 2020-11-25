@@ -1,17 +1,12 @@
 package utility;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DB_Utility {
 
-    public static void main(String[] args) {
-
-        createConnection();
-
-
-    }
+    static Connection conn;// make it static field so we can reuse in every methods we write
+    static ResultSet rs;
+    static Statement stmt;
 
 
     public static void createConnection(){
@@ -23,14 +18,31 @@ public class DB_Utility {
         String password = "hr" ;
 
         try {
+            conn = DriverManager.getConnection(connectionStr, username, password);
             Connection conn = DriverManager.getConnection(connectionStr,username,password) ;
             System.out.println("CONNECTION IS SUCCESSFUL!");
         } catch (SQLException e) {
             System.out.println("CONNECTION HAS FAILED!!!"+e.getMessage());
         }
-
     }
 
+    public static ResultSet runQuery(String query){
+        ResultSet rs = null;
+        try {
+            Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+             rs = stmt.executeQuery(query);
 
+        } catch (SQLException e) {
+            System.out.println("Error while getting resultSet "+e.getMessage());
+        }
+        return rs;
+    }
+
+    public static void destroy() throws SQLException {
+        rs.close();
+        stmt.close();
+        conn.close();
+
+    }
 
 }

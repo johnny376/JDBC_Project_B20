@@ -1,23 +1,16 @@
 package day2;
 
+import utility.DB_Utility;
+
 import java.sql.*;
 
 public class Review {
 
     public static void main(String[] args) throws SQLException {
 
-        // we want to create a statement object that generate
-        // ResultSet that can move forward and backward anytime
-        String connectionStr = "jdbc:oracle:thin:@54.162.198.60:1521:XE";
-        String username = "hr" ;
-        String password = "hr" ;
+        DB_Utility.createConnection();
 
-        Connection conn = DriverManager.getConnection(connectionStr,username,password) ;
-        // this way of creating statement will give you ability to generate
-        // ResultSet that can move forward and backward anytime
-        Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-
-        ResultSet rs   =   stmt.executeQuery("SELECT * FROM JOBS") ;
+        ResultSet rs   =   DB_Utility.runQuery("SELECT * FROM JOBS") ;
 
         rs.next();
         System.out.println("First column value in Jobs: " + rs.getString(1));
@@ -52,9 +45,7 @@ public class Review {
         }
 
         //clean up the connection, statement and resultant object after usage:
-        rs.close();
-        stmt.close();
-        conn.close();
+        DB_Utility.destroy();
 
 
 
