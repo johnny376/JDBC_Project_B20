@@ -17,14 +17,18 @@ public class GettingMoreInfoAboutResultObject {
         // ResultSet that can move forward and backward anytime
         Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 
-        ResultSet rs   =   stmt.executeQuery("SELECT * FROM JOBS") ;
+        ResultSet rs   =   stmt.executeQuery("SELECT * FROM EMPLOYEES") ;
 
         ResultSetMetaData rsmd = rs.getMetaData();
         int colCount = rsmd.getColumnCount();
-        System.out.println("colCount = " + colCount);
+        System.out.println("column Count = " + colCount);
 
         System.out.println("First column name is: "+ rsmd.getColumnLabel(1));
         System.out.println("Second column name is: "+ rsmd.getColumnLabel(2));
+
+        for (int colNum = 1; colNum<= colCount; colNum++){
+            System.out.println("Column name: " + rsmd.getColumnLabel(colNum));
+        }
 
 
 
